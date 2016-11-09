@@ -1,0 +1,68 @@
+body {
+    font-family: Verdana;
+    font-weight: 600;
+}
+table {
+    border-collapse: collapse;
+    border: 1px solid #e2e2e2;
+}
+table td {
+    border: 1px solid #e2e2e2!important;
+}
+table td, table th {
+    padding: 10px;
+}
+.label {
+    float: right;
+    margin: 5px;
+}
+.label-as-badge {
+    border-radius: 1em;
+}
+textarea {
+    resize: none;
+}
+.btn.sharp {
+    border-radius: 0;
+}
+.custom-container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+.navbar {
+     border-radius: 0px!important;
+}
+
+/* Not required for template or sticky footer method. */
+
+.container {
+    width: auto;
+    max-width: 680px;
+    padding: 0 15px;
+}
+.container .text-muted {
+    margin: 20px 0;
+}
