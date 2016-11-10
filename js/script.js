@@ -20,6 +20,7 @@ $("textarea").keydown(function(e) {
     }
 });
 
+// Checks for extra spaces at the end and beginning
 function extraSpaceError(cell){
   if(extraSpaceCheck(cell)){
     return '<span class="label label-info">Extra Space</span>';
@@ -28,6 +29,7 @@ function extraSpaceError(cell){
   }
 }
 
+// Error return when capitalisation missing
 function capitalizationError(cell){
   if(capitalizationCheck(cell)){
       return '<span class="label label-warning">Capitalization</span>';
@@ -96,30 +98,35 @@ function generateTable() {
 
     var table = $('<table />');
 
+    var ul = $('<ul />')
+
     var count = 0;
 
     for (var y in rows) {
-
+        var temp = [];
         var cells = rows[y].split("\t");
         var data = wordRepetition(rows[y]);
         var row = $('<tr />');
+        //var list = $('<ul />').addClass('list-group');
         if(rows[y].length > 0){
           count++;
         }
-        /*for(var key in data){
+        for(var key in data){
           if(data[key] > 1 && key.length > 2){
-            row.append('<td>The word <span style="color:red">' + key + '</span> is being repeated ' + data[key] + ' Times in line ' + count + '</td>');
+            row.append('<li class="list-group-item">The word <span style="color:red"><a target="_blank"href="http://www.sinonimos.com.br/' + key + '">' + key + '</a></span> is being repeated ' + data[key] + ' Times in line ' + count + '</li>');
           }
-        }*/
+        }
 
 
         for (var x in cells) {
             if (cells[x].length > 0) {
                 row.append('<td>' + cells[x] + characterCount(cells[x]) + capitalizationError(cells[x]) + extraSpaceError(cells[x]) + '</td>');
+                //list.append('<li class="list-group-item">The word <span style="color:red"><a href="http://www.sinonimos.com.br/' + key + '">' + key + '</a></span> is being repeated ' + data[key] + ' Times in line ' + count + '</li>');
             }
         }
         table.append(row);
     }
     // Insert into DOM
     $('#excel_table').html(table);
+    //$('#word_repetition').html(list);
 }
