@@ -23,33 +23,33 @@ $("textarea").keydown(function(e) {
 // Checks for extra spaces at the end and beginning
 function extraSpaceError(cell){
   if(extraSpaceCheck(cell)){
-    return '<span class="label label-info">Extra Space</span>';
+    return '<span class="label label-info text-left">Extra Space</span>';
   }else{
-    return ' ';
+    return ' '
   }
 }
 
 // Error return when capitalisation missing
 function capitalizationError(cell){
   if(capitalizationCheck(cell)){
-      return '<span class="label label-warning">Capitalization</span>';
+      return '<span class="label label-warning text-left">Capitalization</span>';
   }else{
-    return ' ';
+    return ' '
   }
 }
 
 function characterCount(cell){
   if(cell.length > 0 && cell.length <= 50){
-    return '<span class="label label-success">' + cell.length + '</span>';
+    return '<span class="label label-success text-left">' + cell.length + '</span>';
   }else{
-    return '<span class="label label-danger">' + cell.length + '</span>';
+    return '<span class="label label-danger text-left">' + cell.length + '</span>';
   }
 }
 
 
-// checks if a value is numeric
+// checks if a value is numeric or has special characters
 function hasNumeric(val) {
-    var regex = /[0-9]+/g;
+    var regex = /^[0-9!@#\$%\^\&\"\'\)\(+=._-]+$/g;
     if(val.match(regex)){
       return false;
     }else{
@@ -59,7 +59,14 @@ function hasNumeric(val) {
 
 //returns true if a lower case value is found in the first position
 function isLowerCase(value){
-  return value.charAt(0) === value.charAt(0).toLowerCase();
+  	if(value.charAt(0) === value.charAt(0).toLowerCase() && !value.charAt(0).match(/^[0-9!@#\$%\^\&\"\'\)\(+=._-]+$/g)){
+		  return true;
+	  }
+    if(value.charAt(0).match(/^[0-9!@#\$%\^\&\"\'\)\(+=._-]+$/g)){
+      if(value.charAt(1) === value.charAt(1).toLowerCase() && !value.charAt(1).match(/^[0-9!@#\$%\^\&\"\'\)\(+=._-]+$/g)){
+		    return true;
+	    }
+    }
 }
 
 function extraSpaceCheck(cell){
@@ -74,12 +81,41 @@ function capitalizationCheck(cell) {
     var cleanEmpty = explode.filter(Boolean);
 
     for(var i = 0; i < cleanEmpty.length; i++){
-      if(cleanEmpty[i].length >= 1 && hasNumeric(cleanEmpty[i])){
+      if(hasNumeric(cleanEmpty[i])){
         if(isLowerCase(cleanEmpty[i])){
           return true;
         }
       }
     }
+}
+
+function intercapCheck(cell){
+  var explode = cell.split(' ');
+	var subStr = [];
+
+	for(var i = 0; i < explode.length; i++){
+    if(explode[i].charAt(0).match(/^[0-9!@#\$%\^\&\"\'\)\(+=._-]+$/g)){
+      subStr.push(explode[i].substring(2));
+    }else{
+      subStr.push(explode[i].substring(1));
+    }
+
+	}
+	var letters = subStr.join('').split('');
+
+	for (var e = 0; e<letters.length; e++) {
+		if (letters[e] === letters[e].toUpperCase() && letters[e] !== letters[e].toLowerCase()) {
+			return true;
+		}
+	}
+}
+
+function intercapError(cell){
+  if(intercapCheck(cell)){
+    return '<span class="label label-default text-left">intercapitalization</span>';
+  }else{
+    return ' '
+  }
 }
 
 function wordRepetition(row){
@@ -98,35 +134,43 @@ function generateTable() {
 
     var table = $('<table />');
 
-    var ul = $('<ul />')
+    var ul = $('<ul />').addClass('list-group');
 
     var count = 0;
 
     for (var y in rows) {
-        var temp = [];
+
         var cells = rows[y].split("\t");
         var data = wordRepetition(rows[y]);
         var row = $('<tr />');
-        //var list = $('<ul />').addClass('list-group');
+
+
         if(rows[y].length > 0){
           count++;
         }
         for(var key in data){
+
           if(data[key] > 1 && key.length > 2){
-            row.append('<li class="list-group-item">The word <span style="color:red"><a target="_blank"href="http://www.sinonimos.com.br/' + key + '">' + key + '</a></span> is being repeated ' + data[key] + ' Times in line ' + count + '</li>');
+            var li = $('<li />').addClass('list-group-item');
+            li.append('The word <span style="color:red"><a target="_blank"href="http://www.priberam.pt/dlpo/' + key + '">' + key + '</a></span> is being repeated ' + data[key] + ' Times in line ' + count);
           }
         }
 
 
         for (var x in cells) {
             if (cells[x].length > 0) {
-                row.append('<td>' + cells[x] + characterCount(cells[x]) + capitalizationError(cells[x]) + extraSpaceError(cells[x]) + '</td>');
-                //list.append('<li class="list-group-item">The word <span style="color:red"><a href="http://www.sinonimos.com.br/' + key + '">' + key + '</a></span> is being repeated ' + data[key] + ' Times in line ' + count + '</li>');
+                row.append('<td>' + cells[x] + intercapError(cells[x]) + characterCount(cells[x]) + capitalizationError(cells[x]) + extraSpaceError(cells[x]) + '</td>');
             }
         }
         table.append(row);
+        ul.append(li);
+
     }
     // Insert into DOM
     $('#excel_table').html(table);
-    //$('#word_repetition').html(list);
+    $('#word_repetition').html(ul)
+
+
+
+
 }

@@ -5,26 +5,80 @@
   <meta name="viewport" content="width=device-width">
   <script src="https://code.jquery.com/jquery.min.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css">
+  <link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css">
   <link href="css/style.css" rel="stylesheet" type="text/css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <title>TOOL</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">StS Helper</a>
+        <a class="navbar-brand" href="#">StS Helper BR</a>
       </div>
       <ul class="nav navbar-nav navbar-right">
+        <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
+          Instructions
+        </button
       </ul>
     </div>
   </nav>
 
 
+  <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Instructions</h4>
+      </div>
+      <div class="modal-body">
+        <p>Hello guys,</p>
+        <p>
+          This tool helps you spot different errors that will happen while working on spreadsheets.
+          The errors this tool spots for now are:<br>
+          <p class="alert alert-success">Character Counting</p>
+          By default this is currently 50 so when it hits 51 it will change color from green to red.
+          <img src="img/charcount.png" alt="character counting">
+        </p>
+        <p>
+          <p class="alert alert-warning">Word Capitalization</p>
+          Word caps as I call it works by telling you if the first character of a word is
+          capitalized or not. It also works by wrapping a word in quotes as some people have requested
+          this.
+          <img src="img/cap1.png" alt="cap1">
+          <img src="img/cap2.png" alt="cap2">
+        </p>
+        <p>
+          <p class="alert alert-info">Extra Space Checker</p>
+          As the name says this feature checks for extra space before or after the values.<br>
+          <img src="img/space.png" alt="extra space">
+        </p>
+        <p>
+          <p class="alert alert-danger">Intercapitalization Check</p>
+          Another requested feature was intercapitalization checking which simply means
+          capital letters in the middle of a word.<br>
+          <img src="img/intercap.png" alt="intercapitalization">
+        </p>
+        <p>
+          <p class="alert alert-success">Word Repetition</p>
+          Another extra thing it does is checking for repetition. This may not be helpfull for everyone but
+          may give you a hint if something needs to be changed.
+          <img src="img/repetition.png" alt="repetition">
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <div class="custom-container">
-    <p class="alert alert-default text-center"><span class="alert alert-danger">To Separate Values Use The TAB Key (Only If Typing Manually)</span></p>
+    <p class="alert alert-default text-center"><span class="alert alert-success">To Separate Values Use The TAB Key (Only If Typing Manually)</span></p>
     <textarea name="excel_data" cols="85" rows="10" class="form-control"></textarea><br>
     <input id="generateTable" class="btn btn-primary btn-block sharp" type="button" onclick="javascript:generateTable()" value="Generate Analytics" />
     <br><br>
