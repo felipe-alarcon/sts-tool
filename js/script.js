@@ -20,6 +20,16 @@ $("textarea").keydown(function(e) {
     }
 });
 
+String.prototype.escape = function() {
+    var tagsToReplace = {
+        '<': '&lt;',
+        '>': '&gt;'
+    };
+    return this.replace(/[&<>]/g, function(tag) {
+        return tagsToReplace[tag] || tag;
+    });
+};
+
 // Checks for extra spaces at the end and beginning
 function extraSpaceError(cell){
   if(extraSpaceCheck(cell)){
@@ -159,8 +169,9 @@ function generateTable() {
 
         for (var x in cells) {
             if (cells[x].length > 0) {
-                row.append('<td>' + cells[x] + intercapError(cells[x]) + characterCount(cells[x]) + capitalizationError(cells[x]) + extraSpaceError(cells[x]) + '</td>');
+                row.append('<td>' + cells[x].escape() + intercapError(cells[x]) + characterCount(cells[x]) + capitalizationError(cells[x]) + extraSpaceError(cells[x]) + '</td>');
             }
+            console.log(typeof cells[x]);
         }
         table.append(row);
         ul.append(li);

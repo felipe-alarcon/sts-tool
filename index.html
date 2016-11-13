@@ -6,20 +6,23 @@
   <script src="https://code.jquery.com/jquery.min.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/fakeLoader/fakeLoader.css">
   <link href="css/style.css" rel="stylesheet" type="text/css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="bower_components/fakeLoader/fakeLoader.min.js"></script>
   <title>TOOL</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-inverse">
+  <div class="fakeLoader"></div>
+  <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">StS Helper BR</a>
       </div>
       <ul class="nav navbar-nav navbar-right">
         <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
-          Instructions
+          Instructions <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
         </button
       </ul>
     </div>
@@ -80,7 +83,9 @@
   <div class="custom-container">
     <p class="alert alert-default text-center"><span class="alert alert-success">To Separate Values Use The TAB Key (Only If Typing Manually)</span></p>
     <textarea name="excel_data" cols="85" rows="10" class="form-control"></textarea><br>
-    <input id="generateTable" class="btn btn-primary btn-block sharp" type="button" onclick="javascript:generateTable()" value="Generate Analytics" />
+    <button id="generateTable" class="btn btn-primary btn-block sharp" onclick="javascript:generateTable()">
+      <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+    </button>
     <br><br>
     <hr>
     <div id="excel_table"></div>
@@ -88,6 +93,15 @@
 
   </div>
   <script src="js/script.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+      $(".fakeloader").fakeLoader({
+          timeToHide:1200,
+          bgColor:"#178acc",
+          spinner:"spinner4"
+      });
+  });
+  </script>
 </body>
 
 </html>
