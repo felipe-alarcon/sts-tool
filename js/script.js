@@ -59,7 +59,7 @@ function characterCount(cell){
 
 // checks if a value is numeric or has special characters
 function hasNumeric(val) {
-    var regex = /^[0-9!@#\$%\^\&\"\'\)\(+=._-]+$/g;
+    var regex = /^[0-9!@#\$%\^\&\"\'\)\(+=.,_-]+$/g;
     if(val.match(regex)){
       return false;
     }else{
@@ -69,11 +69,11 @@ function hasNumeric(val) {
 
 //returns true if a lower case value is found in the first position
 function isLowerCase(value){
-  	if(value.charAt(0) === value.charAt(0).toLowerCase() && !value.charAt(0).match(/^[0-9!@#\$%\^\&\"\'\)\(+=._-]+$/g)){
+  	if(value.charAt(0) === value.charAt(0).toLowerCase() && !value.charAt(0).match(/^[0-9!@#\$%\^\&\"\'\)\(+=.,_-]+$/g)){
 		  return true;
 	  }
     if(value.charAt(0).match(/^[0-9!@#\$%\^\&\"\'\)\(+=._-]+$/g)){
-      if(value.charAt(1) === value.charAt(1).toLowerCase() && !value.charAt(1).match(/^[0-9!@#\$%\^\&\"\'\)\(+=._-]+$/g)){
+      if(value.charAt(1) === value.charAt(1).toLowerCase() && !value.charAt(1).match(/^[0-9!@#\$%\^\&\"\'\)\(+=.,_-]+$/g)){
 		    return true;
 	    }
     }
@@ -149,7 +149,7 @@ function generateTable() {
     var count = 0;
 
     for (var y in rows) {
-
+        var li = $('<li />').addClass('list-group-item');
         var cells = rows[y].split("\t");
         var data = wordRepetition(rows[y]);
         var row = $('<tr />');
@@ -161,8 +161,7 @@ function generateTable() {
         for(var key in data){
 
           if(data[key] > 1 && key.length > 2){
-            var li = $('<li />').addClass('list-group-item');
-            li.append('The word <span style="color:red"><a target="_blank"href="http://www.priberam.pt/dlpo/' + key + '">' + key + '</a></span> is being repeated ' + data[key] + ' Times in line ' + count);
+            li.append('The word <span style="color:red">' + key + '</a></span> is being repeated ' + data[key] + ' Times in line ' + count + ' | ');
           }
         }
 
@@ -171,7 +170,6 @@ function generateTable() {
             if (cells[x].length > 0) {
                 row.append('<td>' + cells[x].escape() + intercapError(cells[x]) + characterCount(cells[x]) + capitalizationError(cells[x]) + extraSpaceError(cells[x]) + '</td>');
             }
-            console.log(typeof cells[x]);
         }
         table.append(row);
         ul.append(li);
