@@ -59,7 +59,7 @@ function characterCount(cell){
 
 // checks if a value is numeric or has special characters
 function hasNumeric(val) {
-    var regex = /^[0-9!@#\$%\^\&\"\'\)\(+=.,_-]+$/g;
+    var regex = /^[0-9!@#\$%\^\&\"\'\)\(+=.,:;_-]+$/g;
     if(val.match(regex)){
       return false;
     }else{
@@ -69,11 +69,11 @@ function hasNumeric(val) {
 
 //returns true if a lower case value is found in the first position
 function isLowerCase(value){
-  	if(value.charAt(0) === value.charAt(0).toLowerCase() && !value.charAt(0).match(/^[0-9!@#\$%\^\&\"\'\)\(+=.,_-]+$/g)){
+  	if(value.charAt(0) === value.charAt(0).toLowerCase() && !value.charAt(0).match(/^[0-9!@#\$%\^\&\"\'\)\(+=.,:;_-]+$/g)){
 		  return true;
 	  }
     if(value.charAt(0).match(/^[0-9!@#\$%\^\&\"\'\)\(+=._-]+$/g)){
-      if(value.charAt(1) === value.charAt(1).toLowerCase() && !value.charAt(1).match(/^[0-9!@#\$%\^\&\"\'\)\(+=.,_-]+$/g)){
+      if(value.charAt(1) === value.charAt(1).toLowerCase() && !value.charAt(1).match(/^[0-9!@#\$%\^\&\"\'\)\(+=.,:;_-]+$/g)){
 		    return true;
 	    }
     }
