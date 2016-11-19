@@ -60,6 +60,9 @@ body {
 img{
     width: 100%;
 }
+#instructions{
+    margin-top: 72px;
+}
 
 /* Custom page CSS
 -------------------------------------------------- */

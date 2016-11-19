@@ -4,23 +4,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <title>Helper Tool</title>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <title>Capster Tool</title>
 </head>
 
 <body>
     <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
-                
+                <img src="img/logo.png" alt="logo">
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <button type="button" class="btn btn-primary btn-lg animated rubberBand" data-toggle="modal" data-target="#myModal">
+                <button type="button" id="instructions" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
           Instructions <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
         </button
       </ul>
@@ -37,7 +35,7 @@
                 <h4 class="modal-title" id="myModalLabel">Instructions</h4>
         </div>
         <div class="modal-body">
-          <span class="alert alert-success">To Separate Values Use The TAB Key (Only If Typing Manually)</span><br>
+          <p class="alert alert-success">To Separate Values Use The TAB Key (Only If Typing Manually)</p>
             <p>Hello guys,</p>
             <p>
                 This tool helps you spot different errors that will happen while working on spreadsheets. The errors this tool spots for now are:<br>

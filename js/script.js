@@ -20,12 +20,19 @@ $("textarea").keydown(function(e) {
     }
 });
 
+function regExpression(){
+  return /^[0-9!@#\$%\^\&\"\'\)\(+=.,:;_-]+$/g;
+}
+
 String.prototype.escape = function() {
     var tagsToReplace = {
         '<': '&lt;',
-        '>': '&gt;'
+        '>': '&gt;',
+        '&': '&amp;',
+        '"': '&quot;',
+        '\'':'&#039;'
     };
-    return this.replace(/[&<>]/g, function(tag) {
+    return this.replace(/["\'\&<>]/g, function(tag) {
         return tagsToReplace[tag] || tag;
     });
 };
@@ -59,7 +66,7 @@ function characterCount(cell){
 
 // checks if a value is numeric or has special characters
 function hasNumeric(val) {
-    var regex = /^[0-9!@#\$%\^\&\"\'\)\(+=.,:;_-]+$/g;
+    var regex = regExpression();
     if(val.match(regex)){
       return false;
     }else{
@@ -69,11 +76,11 @@ function hasNumeric(val) {
 
 //returns true if a lower case value is found in the first position
 function isLowerCase(value){
-  	if(value.charAt(0) === value.charAt(0).toLowerCase() && !value.charAt(0).match(/^[0-9!@#\$%\^\&\"\'\)\(+=.,:;_-]+$/g)){
+  	if(value.charAt(0) === value.charAt(0).toLowerCase() && !value.charAt(0).match(regExpression())){
 		  return true;
 	  }
-    if(value.charAt(0).match(/^[0-9!@#\$%\^\&\"\'\)\(+=._-]+$/g)){
-      if(value.charAt(1) === value.charAt(1).toLowerCase() && !value.charAt(1).match(/^[0-9!@#\$%\^\&\"\'\)\(+=.,:;_-]+$/g)){
+    if(value.charAt(0).match(regExpression())){
+      if(value.charAt(1) === value.charAt(1).toLowerCase() && !value.charAt(1).match(regExpression())){
 		    return true;
 	    }
     }
@@ -104,7 +111,7 @@ function intercapCheck(cell){
 	var subStr = [];
 
 	for(var i = 0; i < explode.length; i++){
-    if(explode[i].charAt(0).match(/^[0-9!@#\$%\^\&\"\'\)\(+=._-]+$/g)){
+    if(explode[i].charAt(0).match(regExpression())){
       subStr.push(explode[i].substring(2));
     }else{
       subStr.push(explode[i].substring(1));
