@@ -20,6 +20,12 @@ $("textarea").keydown(function(e) {
     }
 });
 
+$(function () {
+  $("#deleteText").click(function(){
+     $("textarea").val("");
+  });
+});
+
 function regExpression(){
   return /^[0-9!@#\$%\^\&\"\'\)\(+=.,:;_-]+$/g;
 }

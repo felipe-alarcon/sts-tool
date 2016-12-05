@@ -2,6 +2,9 @@ body {
     font-family: Verdana;
     font-weight: 600;
 }
+*{
+  border-radius: 0!important;
+}
 .logo{
   width: 100px;
 }
