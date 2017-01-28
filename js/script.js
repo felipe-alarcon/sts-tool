@@ -20,14 +20,14 @@ $("textarea").keydown(function(e) {
     }
 });
 
-$(function () {
-  $("#deleteText").click(function(){
-     $("textarea").val("");
-  });
+$(function() {
+    $("#deleteText").click(function() {
+        $("textarea").val("");
+    });
 });
 
-function regExpression(){
-  return /^[0-9!@#\$%\^\&\"\'\)\(+=.,:;_-]+$/g;
+function regExpression() {
+    return /^[0-9!@#\$%\^\&\"\'\)\(+=.,:;_-]+$/g;
 }
 
 String.prototype.escape = function() {
@@ -36,7 +36,7 @@ String.prototype.escape = function() {
         '>': '&gt;',
         '&': '&amp;',
         '"': '&quot;',
-        '\'':'&#039;'
+        '\'': '&#039;'
     };
     return this.replace(/["\'\&<>]/g, function(tag) {
         return tagsToReplace[tag] || tag;
@@ -44,58 +44,58 @@ String.prototype.escape = function() {
 };
 
 // Checks for extra spaces at the end and beginning
-function extraSpaceError(cell){
-  if(extraSpaceCheck(cell)){
-    return '<span class="label label-info text-left">Extra Space</span>';
-  }else{
-    return ' '
-  }
+function extraSpaceError(cell) {
+    if (extraSpaceCheck(cell)) {
+        return '<span class="label label-info text-left">Extra Space</span>';
+    } else {
+        return ' '
+    }
 }
 
 // Error return when capitalisation missing
-function capitalizationError(cell){
-  if(capitalizationCheck(cell)){
-      return '<span class="label label-warning text-left">Capitalization</span>';
-  }else{
-    return ' '
-  }
+function capitalizationError(cell) {
+    if (capitalizationCheck(cell)) {
+        return '<span class="label label-warning text-left">Capitalization</span>';
+    } else {
+        return ' '
+    }
 }
 
-function characterCount(cell){
-  if(cell.length > 0 && cell.length <= 50){
-    return '<span class="label label-success text-left">' + cell.length + '</span>';
-  }else{
-    return '<span class="label label-danger text-left">' + cell.length + '</span>';
-  }
+function characterCount(cell) {
+    if (cell.length > 0 && cell.length <= 50) {
+        return '<span class="label label-success text-left">' + cell.length + '</span>';
+    } else {
+        return '<span class="label label-danger text-left">' + cell.length + '</span>';
+    }
 }
 
 
 // checks if a value is numeric or has special characters
 function hasNumeric(val) {
     var regex = regExpression();
-    if(val.match(regex)){
-      return false;
-    }else{
-      return true;
+    if (val.match(regex)) {
+        return false;
+    } else {
+        return true;
     }
 }
 
 //returns true if a lower case value is found in the first position
-function isLowerCase(value){
-  	if(value.charAt(0) === value.charAt(0).toLowerCase() && !value.charAt(0).match(regExpression())){
-		  return true;
-	  }
-    if(value.charAt(0).match(regExpression())){
-      if(value.charAt(1) === value.charAt(1).toLowerCase() && !value.charAt(1).match(regExpression())){
-		    return true;
-	    }
+function isLowerCase(value) {
+    if (value.charAt(0) === value.charAt(0).toLowerCase() && !value.charAt(0).match(regExpression())) {
+        return true;
+    }
+    if (value.charAt(0).match(regExpression())) {
+        if (value.charAt(1) === value.charAt(1).toLowerCase() && !value.charAt(1).match(regExpression())) {
+            return true;
+        }
     }
 }
 
-function extraSpaceCheck(cell){
-  if(cell.slice(0, 1) === ' ' || cell.slice(-1) === ' '){
-    return true;
-  }
+function extraSpaceCheck(cell) {
+    if (cell.slice(0, 1) === ' ' || cell.slice(-1) === ' ') {
+        return true;
+    }
 }
 
 //Pass whole cell and check if every word is capitalized
@@ -103,50 +103,52 @@ function capitalizationCheck(cell) {
     var explode = cell.split(' ');
     var cleanEmpty = explode.filter(Boolean);
 
-    for(var i = 0; i < cleanEmpty.length; i++){
-      if(hasNumeric(cleanEmpty[i])){
-        if(isLowerCase(cleanEmpty[i])){
-          return true;
+    for (var i = 0; i < cleanEmpty.length; i++) {
+        if (hasNumeric(cleanEmpty[i])) {
+            if (isLowerCase(cleanEmpty[i])) {
+                return true;
+            }
         }
-      }
     }
 }
 
-function intercapCheck(cell){
-  var explode = cell.split(' ');
-	var subStr = [];
+function intercapCheck(cell) {
+    var explode = cell.split(' ');
+    var subStr = [];
 
-	for(var i = 0; i < explode.length; i++){
-    if(explode[i].charAt(0).match(regExpression())){
-      subStr.push(explode[i].substring(2));
-    }else{
-      subStr.push(explode[i].substring(1));
+    for (var i = 0; i < explode.length; i++) {
+        if (explode[i].charAt(0).match(regExpression())) {
+            subStr.push(explode[i].substring(2));
+        } else {
+            subStr.push(explode[i].substring(1));
+        }
+
     }
+    var letters = subStr.join('').split('');
 
-	}
-	var letters = subStr.join('').split('');
-
-	for (var e = 0; e<letters.length; e++) {
-		if (letters[e] === letters[e].toUpperCase() && letters[e] !== letters[e].toLowerCase()) {
-			return true;
-		}
-	}
+    for (var e = 0; e < letters.length; e++) {
+        if (letters[e] === letters[e].toUpperCase() && letters[e] !== letters[e].toLowerCase()) {
+            return true;
+        }
+    }
 }
 
-function intercapError(cell){
-  if(intercapCheck(cell)){
-    return '<span class="label label-default text-left">intercapitalization</span>';
-  }else{
-    return ' '
-  }
+function intercapError(cell) {
+    if (intercapCheck(cell)) {
+        return '<span class="label label-default text-left">intercapitalization</span>';
+    } else {
+        return ' '
+    }
 }
 
-function wordRepetition(row){
-  var rowList = row.split('\t').join(' ');
-  var list = rowList.split(' ');
-  var counts = {};
-  list.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
-  return counts;
+function wordRepetition(row) {
+    var rowList = row.split('\t').join(' ');
+    var list = rowList.split(' ');
+    var counts = {};
+    list.forEach(function(x) {
+        counts[x] = (counts[x] || 0) + 1;
+    });
+    return counts;
 }
 
 function generateTable() {
@@ -168,20 +170,24 @@ function generateTable() {
         var row = $('<tr />');
 
 
-        if(rows[y].length > 0){
-          count++;
+        if (rows[y].length > 0) {
+            count++;
         }
-        for(var key in data){
-
-          if(data[key] > 1 && key.length > 2){
-            li.append('The word <span style="color:red">' + key + '</a></span> is being repeated ' + data[key] + ' Times in line ' + count + ' | ');
-          }
+        for (var key in data) {
+            if (data[key] > 1 && key.length > 2) {
+                li.append('The word <span style="color:red">' + key + '</a></span> is being repeated ' + data[key] + ' Times in line ' + count + ' | ');
+            }
         }
 
 
         for (var x in cells) {
             if (cells[x].length > 0) {
-                row.append('<td>' + cells[x].escape() + intercapError(cells[x]) + characterCount(cells[x]) + capitalizationError(cells[x]) + extraSpaceError(cells[x]) + '</td>');
+                row.append('<td><button class="btn btn-warning"><i class="fa fa-clipboard"></i></button></td> <td>' +
+                cells[x].escape() +
+                intercapError(cells[x]) +
+                characterCount(cells[x]) +
+                capitalizationError(cells[x]) +
+                extraSpaceError(cells[x]) + '</td>');
             }
         }
         table.append(row);

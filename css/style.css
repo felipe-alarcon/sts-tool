@@ -1,16 +1,15 @@
 body {
-    font-family: Verdana;
+    font-family: 'Roboto';
     font-weight: 600;
+    font-size: 24px;
 }
 *{
   border-radius: 0!important;
 }
-.logo{
-  width: 100px;
-}
 table {
     border-collapse: collapse;
     border: 1px solid #e2e2e2;
+    padding: 10px;
 }
 table td {
     border: 1px solid #e2e2e2!important;
@@ -27,14 +26,10 @@ table td, table th {
 }
 textarea {
     resize: none;
-    border: 3px solid lightblue!important;
+    border: 4px solid lightgray!important;
 }
 .btn.sharp {
     border-radius: 0;
-}
-.custom-container {
-    max-width: 1440px;
-    margin: 0 auto;
 }
 
 /* Sticky footer styles
@@ -60,12 +55,6 @@ body {
 #word_repetition{
     margin-top: 40px;
 }
-img{
-    width: 100%;
-}
-#instructions{
-    margin-top: 72px;
-}
 
 /* Custom page CSS
 -------------------------------------------------- */
@@ -74,12 +63,3 @@ img{
 }
 
 /* Not required for template or sticky footer method. */
-
-.container {
-    width: auto;
-    max-width: 680px;
-    padding: 0 15px;
-}
-.container .text-muted {
-    margin: 20px 0;
-}

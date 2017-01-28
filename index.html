@@ -6,19 +6,22 @@
     <meta name="viewport" content="width=device-width">
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <title>Capster Tool</title>
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <img src="img/logo.png" alt="logo">
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <button type="button" id="instructions" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <img class="img-responsive" src="img/logo.png" alt="logo">
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" id="instructions" class="btn btn-default" data-toggle="modal" data-target="#myModal">
           Instructions <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
         </button
       </ul>
@@ -32,75 +35,68 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Instructions</h4>
-        </div>
-        <div class="modal-body">
-          <p class="alert alert-success">To Separate Values Use The TAB Key (Only If Typing Manually)</p>
-            <p>Hello guys,</p>
-            <p>
-                This tool helps you spot different errors that will happen while working on spreadsheets. The errors this tool spots for now are:<br>
-                <p class="alert alert-success">Character Counting</p>
-                By default this is currently 50 so when it hits 51 it will change color from green to red.
-                <img src="img/charcount.png" alt="character counting">
-            </p>
-            <p>
-                <p class="alert alert-warning">Word Capitalization</p>
-                Word caps as I call it works by telling you if the first character of a word is capitalized or not. It also works by wrapping a word in quotes as some people have requested this.
-                <img src="img/cap1.png" alt="cap1">
-                <img src="img/cap2.png" alt="cap2">
-            </p>
-            <p>
-                <p class="alert alert-info">Extra Space Checker</p>
-                As the name says this feature checks for extra space before or after the values.<br>
-                <img src="img/space.png" alt="extra space">
-            </p>
-            <p>
-                <p class="alert alert-danger">Intercapitalization Check</p>
-                Another requested feature was intercapitalization checking which simply means capital letters in the middle of a word.<br>
-                <img src="img/intercap.png" alt="intercapitalization">
-            </p>
-            <p>
-                <p class="alert alert-success">Word Repetition</p>
-                Another extra thing it does is checking for repetition. This may not be helpfull for everyone but may give you a hint if something needs to be changed.
-                <img src="img/repetition.png" alt="repetition">
-            </p>
-            <p>
-              <p class="alert alert-info">Chrome Native SpellChecking</p>
-              You can get native speelchecking in your language by default by simply downloading
-              a dictionary to the browser which is already built into the browser. For more detail read this
-              <a target="_blank" href="http://www.makeuseof.com/tag/best-ways-to-spell-check-on-the-go-in-chrome/">Article</a>
-            </p>
-            <p style="color: red">
-                Please note this tool is provided as-is and will not be updated anymore due
-                to the transition to a new more modern tool which is already being used. Also
-                note there are no garantees that this tool will be efficient in all scenarios
-                as there are too many team specific ways to work which would be impossible to take into account.
-                Use this tool at your own risk and I hope it helps.
-            </p>
-            <h5>Author: <a href="http://felipe-dev.me">Felipe Alarcon</a></h5>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        </div>
-        </div>
-        </div>
+                    <h4 class="modal-title" id="myModalLabel">Instructions</h4>
+            </div>
+            <div class="modal-body">
+                <p class="alert alert-success">To Separate Values Use The TAB Key (Only If Typing Manually)</p>
+                <p>Hello guys,</p>
+                <p>
+                    This tool helps you spot different errors that will happen while working on spreadsheets. The errors this tool spots for now are:<br>
+                    <p class="alert alert-success">Character Counting</p>
+                    By default this is currently 50 so when it hits 51 it will change color from green to red.
+                    <img src="img/charcount.png" alt="character counting">
+                </p>
+                <p>
+                    <p class="alert alert-warning">Word Capitalization</p>
+                    Word caps as I call it works by telling you if the first character of a word is capitalized or not. It also works by wrapping a word in quotes as some people have requested this.
+                    <img src="img/cap1.png" alt="cap1">
+                    <img src="img/cap2.png" alt="cap2">
+                </p>
+                <p>
+                    <p class="alert alert-info">Extra Space Checker</p>
+                    As the name says this feature checks for extra space before or after the values.<br>
+                    <img src="img/space.png" alt="extra space">
+                </p>
+                <p>
+                    <p class="alert alert-danger">Intercapitalization Check</p>
+                    Another requested feature was intercapitalization checking which simply means capital letters in the middle of a word.<br>
+                    <img src="img/intercap.png" alt="intercapitalization">
+                </p>
+                <p>
+                    <p class="alert alert-success">Word Repetition</p>
+                    Another extra thing it does is checking for repetition. This may not be helpfull for everyone but may give you a hint if something needs to be changed.
+                    <img src="img/repetition.png" alt="repetition">
+                </p>
+                <p>
+                    <p class="alert alert-info">Chrome Native SpellChecking</p>
+                    You can get native speelchecking in your language by default by simply downloading a dictionary to the browser which is already built into the browser. For more detail read this
+                    <a target="_blank" href="http://www.makeuseof.com/tag/best-ways-to-spell-check-on-the-go-in-chrome/">Article</a>
+                </p>
+                <h5>Author: <a href="http://felipe-dev.me">Felipe Alarcon</a></h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+    </div>
+    </div>
+    </div>
 
 
-        <div>
-          <div class="text-container">
-            <button id="deleteText" type="button" name="button" class="btn btn-danger pull-right" onclick="delete">Delete all data inside the box</button>
+    <div>
+        <div class="text-container">
+            <button id="deleteText" type="button" name="button" class="btn btn-danger pull-right" onclick="delete">Clear <span class="glyphicon glyphicon-trash"></span></button>
             <textarea name="excel_data" cols="85" rows="10" class="form-control"></textarea><br>
-          </div>
-            <button id="generateTable" class="btn btn-success btn-block sharp" onclick="javascript:generateTable()">
+        </div>
+        <button id="generateTable" class="btn btn-success btn-block sharp" onclick="javascript:generateTable()">
               <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
             </button>
-            <br><br>
-            <hr>
-        </div>
-          <div id="excel_table"></div>
-          <div id="word_repetition"></div>
-        <script src="js/script.js"></script>
+        <br><br>
+        <hr>
+    </div>
+    <div id="excel_table"></div>
+    <div id="word_repetition"></div>
+    </div>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
