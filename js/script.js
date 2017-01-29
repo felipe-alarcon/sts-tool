@@ -65,7 +65,7 @@ function characterCount(cell) {
     if (cell.length > 0 && cell.length <= 50) {
         return '<span class="label label-success text-left">' + cell.length + '</span>';
     } else {
-        return '<span class="label label-danger text-left">' + cell.length + '</span>';
+        return '<span class="label label-danger text-left">'  + cell.length + '</span>';
     }
 }
 
@@ -182,23 +182,18 @@ function generateTable() {
 
         for (var x in cells) {
             if (cells[x].length > 0) {
-                row.append('<td><button class="btn btn-warning"><i class="fa fa-clipboard"></i></button></td> <td>' +
-                cells[x].escape() +
-                intercapError(cells[x]) +
-                characterCount(cells[x]) +
-                capitalizationError(cells[x]) +
+                row.append('<td><button class="btn btn-warning"><i class="fa fa-clipboard"></i></button></td>' +
+                '<td>' + cells[x].escape() + '</td>' +
+                '<td>' + characterCount(cells[x])    +
+                intercapError(cells[x])              +
+                capitalizationError(cells[x])        +
                 extraSpaceError(cells[x]) + '</td>');
             }
         }
         table.append(row);
         ul.append(li);
-
     }
     // Insert into DOM
     $('#excel_table').html(table);
-    $('#word_repetition').html(ul)
-
-
-
-
+    $('#word_repetition').html(ul);
 }
