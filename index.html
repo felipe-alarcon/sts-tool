@@ -86,7 +86,7 @@
     <div>
         <div class="text-container">
             <button id="deleteText" type="button" name="button" class="btn btn-danger pull-right" onclick="delete">Clear <span class="glyphicon glyphicon-trash"></span></button>
-            <textarea name="excel_data" cols="85" rows="10" class="form-control"></textarea><br>
+            <textarea name="excel_data" cols="85" rows="10" class="form-control"></textarea>
         </div>
         <button id="generateTable" class="btn btn-success btn-block sharp" onclick="javascript:generateTable()">
               <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
@@ -98,6 +98,15 @@
     <div id="word_repetition"></div>
     </div>
     <script src="js/script.js"></script>
+    <script>
+        var clipboard = new Clipboard('#data');
+        clipboard.on('success', function(e) {
+            console.log('copied!');
+        });
+        clipboard.on('error', function(e) {
+            console.log('error');
+        });
+    </script>
 </body>
 
 </html>

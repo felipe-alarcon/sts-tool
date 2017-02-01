@@ -27,7 +27,7 @@ $(function() {
 });
 
 function regExpression() {
-    return /^[0-9!@#\$%\^\&\"\'\)\(+=.,:;_-]+$/g;
+    return /^[0-9!@#\$%\^\&\"\'\/)\(+=.,:;_-]+$/g;
 }
 
 String.prototype.escape = function() {
@@ -90,6 +90,14 @@ function isLowerCase(value) {
             return true;
         }
     }
+    var explode = value.split('');
+    for (var i = 0; i < explode.length - 1; i++) {
+      if (explode[i].match(regExpression())) {
+        if (explode[i + 1] === explode[i + 1].toLowerCase() && !explode[i + 1].match(regExpression())) {
+          return true;
+        }
+      }
+    }
 }
 
 function extraSpaceCheck(cell) {
@@ -102,6 +110,8 @@ function extraSpaceCheck(cell) {
 function capitalizationCheck(cell) {
     var explode = cell.split(' ');
     var cleanEmpty = explode.filter(Boolean);
+
+    console.log(cleanEmpty);
 
     for (var i = 0; i < cleanEmpty.length; i++) {
         if (hasNumeric(cleanEmpty[i])) {
@@ -117,12 +127,13 @@ function intercapCheck(cell) {
     var subStr = [];
 
     for (var i = 0; i < explode.length; i++) {
+      //for (var k = 0; cell.length; k++) {
         if (explode[i].charAt(0).match(regExpression())) {
             subStr.push(explode[i].substring(2));
         } else {
             subStr.push(explode[i].substring(1));
         }
-
+      //}
     }
     var letters = subStr.join('').split('');
 
@@ -182,10 +193,10 @@ function generateTable() {
 
         for (var x in cells) {
             if (cells[x].length > 0) {
-                row.append('<td><button class="btn btn-warning"><i class="fa fa-clipboard"></i></button></td>' +
-                '<td>' + cells[x].escape() + '</td>' +
-                '<td>' + characterCount(cells[x])    +
-                intercapError(cells[x])              +
+                row.append('<td><button id="data" class="btn btn-warning" data-clipboard-text="' +
+                cells[x].escape() + '"><i class="fa fa-clipboard"></i></button></td>' +
+                '<td class="results">' + cells[x].escape() + '</td>' +
+                '<td class="results">' + characterCount(cells[x])    +
                 capitalizationError(cells[x])        +
                 extraSpaceError(cells[x]) + '</td>');
             }
